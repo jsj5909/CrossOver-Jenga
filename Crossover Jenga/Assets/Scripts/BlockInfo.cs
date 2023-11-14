@@ -19,12 +19,12 @@ public class BlockInfo
 
     public void PrintBlock()
     {
-         Debug.Log("ID: " + id);
+         Debug.Log("Grade: " + grade + "Domain: " + domain + " Cluster: " + cluster + " ID: " + id);
         // Debug.Log("subject: " + subject);
-         Debug.Log("Grade: " + grade);
+        // Debug.Log("Grade: " + grade);
         // Debug.Log("Mastery " + mastery);
-        Debug.Log("Domain Name: " + domain);
-        Debug.Log("Cluster: " + cluster);
+       // Debug.Log("Domain Name: " + domain);
+       // Debug.Log("Cluster: " + cluster);
     }
 
 }

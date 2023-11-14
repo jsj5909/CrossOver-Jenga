@@ -36,7 +36,7 @@ public class Loader : MonoBehaviour
 
             if (request.result ==  UnityWebRequest.Result.ConnectionError)
             {
-                Debug.Log("Error: " + request.error);
+               // Debug.Log("Error: " + request.error);
             }
             else
             {
@@ -50,7 +50,9 @@ public class Loader : MonoBehaviour
               
                 allBlocks = (List<BlockInfo>)JsonConvert.DeserializeObject<List<BlockInfo>>(jData);
 
-                // foreach (BlockInfo block in allBlocks) { block.PrintBlock(); }
+                //foreach (BlockInfo block in allBlocks) { block.PrintBlock(); }
+
+                //Debug.Log("BLOCK COUNT" + allBlocks.Count);
 
                 if (onDataLoaded != null)
                     onDataLoaded(allBlocks);
