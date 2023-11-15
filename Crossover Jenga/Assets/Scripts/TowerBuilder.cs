@@ -14,6 +14,7 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private GameObject _stoneBlock;
 
     [SerializeField] private TMP_Text[] _towerLabels;
+
    
 
     private float _tower1HorizontalBaseX = -10f;
@@ -34,7 +35,7 @@ public class TowerBuilder : MonoBehaviour
     private float _pieceHeight = 1.5f;
     private float _pieceWidth = 2.5f;
 
-  
+    
     
     private void OnEnable()
     {
@@ -67,8 +68,10 @@ public class TowerBuilder : MonoBehaviour
 
 
           
-            while(currentPiece < currentGradeList.Count)
+            while(currentPiece < currentGradeList.Count )
             {
+                
+                
                 if(horizontal)
                 {
                     pieceTransform = ComputeTransform(currentTower, currentPieceInGroup, height, horizontal);
@@ -91,6 +94,7 @@ public class TowerBuilder : MonoBehaviour
                 }
 
                 currentPiece++;
+
             }
 
             currentTower++;
@@ -186,4 +190,5 @@ public class TowerBuilder : MonoBehaviour
 
     }
 
+    
 }
