@@ -363,6 +363,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Loader.cs"
 "Assets/Scripts/TowerBuilder.cs"
+"Assets/Scripts/UI.cs"
 -langversion:9.0
 
 /deterministic

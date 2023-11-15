@@ -17,14 +17,6 @@ public class BlockInfo
     public string standarddescription;
     
 
-    public void PrintBlock()
-    {
-         Debug.Log("Grade: " + grade + "Domain: " + domain + " Cluster: " + cluster + " ID: " + id);
-        // Debug.Log("subject: " + subject);
-        // Debug.Log("Grade: " + grade);
-        // Debug.Log("Mastery " + mastery);
-       // Debug.Log("Domain Name: " + domain);
-       // Debug.Log("Cluster: " + cluster);
-    }
+   
 
 }

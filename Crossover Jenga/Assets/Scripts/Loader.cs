@@ -16,12 +16,10 @@ public class Loader : MonoBehaviour
 
     public BlockInfo currentBlock;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         allBlocks = new List<BlockInfo>() ;
-        
-      
         
 
         StartCoroutine(LoadData());
@@ -36,24 +34,19 @@ public class Loader : MonoBehaviour
 
             if (request.result ==  UnityWebRequest.Result.ConnectionError)
             {
-               // Debug.Log("Error: " + request.error);
+               Debug.Log("Error: " + request.error);
             }
             else
             {
-               // Debug.Log("Received: " + request.downloadHandler.text);
-
+             
                 string jData = request.downloadHandler.text;
 
-                BlockInfo data = new BlockInfo();
 
                 JsonSerializer serializer = new JsonSerializer();
               
                 allBlocks = (List<BlockInfo>)JsonConvert.DeserializeObject<List<BlockInfo>>(jData);
 
-                //foreach (BlockInfo block in allBlocks) { block.PrintBlock(); }
-
-                //Debug.Log("BLOCK COUNT" + allBlocks.Count);
-
+               
                 if (onDataLoaded != null)
                     onDataLoaded(allBlocks);
 
@@ -62,39 +55,4 @@ public class Loader : MonoBehaviour
         
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
-
-
-//jData.Trim('[');
-//jData.Trim(']');
-
-//Debug.Log(jData);
-
-//string[] blocks = new string[200];
-
-//blocks = jData.Split('{','}');
-
-
-
-//List<BlockInfo> allBlocks = new List<BlockInfo>(); 
-
-//foreach(string item in blocks)
-//{
-
-//    string temp = '{' + item + '}';
-//    Debug.Log(item);
-//    // Debug.Log(temp);
-//     if (item == "[" || item == "]" || item == ",") continue;
-//    //item.Insert(0, "{");
-//    //item.Insert(item.Length - 1, "}");
-
-
-//      allBlocks.Add(JsonUtility.FromJson<BlockInfo>(temp));
-
-//}

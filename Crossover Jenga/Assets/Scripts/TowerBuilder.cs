@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -7,9 +7,7 @@ using TMPro;
 
 public class TowerBuilder : MonoBehaviour
 {
-    //[SerializeField] private Transform _tower1base;
-    //[SerializeField] private Transform _tower2base;
-    //[SerializeField] private Transform _tower3base;
+   
 
     [SerializeField] private GameObject _glassBlock;
     [SerializeField] private GameObject _woodBlock;
@@ -36,7 +34,7 @@ public class TowerBuilder : MonoBehaviour
     private float _pieceHeight = 1.5f;
     private float _pieceWidth = 2.5f;
 
-   // private float _zPosition = -2.5f;
+  
     
     private void OnEnable()
     {
@@ -48,11 +46,7 @@ public class TowerBuilder : MonoBehaviour
         DataProcessor.onDataReady -= BuildTower;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
    void BuildTower(List<string> gradeLevels, List<BlockInfo> blocks)
    {
@@ -64,16 +58,15 @@ public class TowerBuilder : MonoBehaviour
         int currentTower = 0;
 
         Transform pieceTransform;
-        Debug.Log("GRADE COUNT = " + gradeLevels.Count);
-        //Debug.Log("BLOCKS2: " + blocks.Count);
+      
         foreach(string grade in gradeLevels)
         {
             List<BlockInfo> currentGradeList = (from b in blocks where b.grade == grade select b).ToList();
-            // foreach (BlockInfo b in currentGradeList) b.PrintBlock();
+           
             _towerLabels[currentTower].text = grade;
 
 
-            Debug.Log("CURRENT GRADE LIST COUNT: " + currentGradeList.Count);
+          
             while(currentPiece < currentGradeList.Count)
             {
                 if(horizontal)
@@ -115,12 +108,12 @@ public class TowerBuilder : MonoBehaviour
     {
         Vector3 piecePosition = Vector3.zero;
 
-        Quaternion _pieceRotation;
+      
 
         GameObject singlePiece = Instantiate(SelectBlock(block.mastery), pieceTransform.position, pieceTransform.rotation);
 
         if (block.mastery == 0)
-            GameManager.glassBlocks.Add(singlePiece);
+            GameManager.Instance.glassBlocks.Add(singlePiece);
 
         Block pieceInfo = singlePiece.GetComponent<Block>();
 

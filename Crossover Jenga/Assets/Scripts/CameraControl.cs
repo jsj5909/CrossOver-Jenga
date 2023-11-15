@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -16,13 +15,13 @@ public class CameraControl : MonoBehaviour
 
     private Vector3 _cameraStartRotation;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         _cameraStartRotation = transform.rotation.eulerAngles;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         float rotateAngle;

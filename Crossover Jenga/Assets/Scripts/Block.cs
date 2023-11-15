@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour
 {
 
-    [SerializeField] private List<Material> _materials;
+
+    [SerializeField] private Text[] _blockLabels; 
     
     private MeshRenderer _mRenderer;
+
+    private BlockInfo _info;
     
-    // Start is called before the first frame update
+    
     void Start()
     {
         _mRenderer = GetComponent<MeshRenderer>();
@@ -17,30 +20,43 @@ public class Block : MonoBehaviour
             Debug.LogError("Mesh Renderer on block is null");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
     public void LoadData(BlockInfo data)
     {
-        Debug.Log("Mastery: " + data.mastery);
-        //ApplyMaterial(data.mastery);
+       
+        _info = data;
+
+        if(data.mastery == 1)
+        {
+            _blockLabels[0].text = "LEARNED";
+            _blockLabels[1].text = "LEARNED";
+        }
+        if(data.mastery == 2)
+        {
+            _blockLabels[0].text = "MASTERED";
+            _blockLabels[1].text = "MASTERED";
+        }
     }
 
-    public void ApplyMaterial(int i)
+   
+
+    private void OnMouseOver()
     {
-        //_mRenderer.materials[0] = _materials[i];
-       // List<Material> mat = new List<Material>();
+        if(GameManager.Instance.jenga)
+        {
+            if(Input.GetMouseButtonDown(0))
+                Destroy(this.gameObject);
+            return;
+        }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            UI.Instance.infoPane.SetActive(true);
+            UI.Instance.gradeDomainText.text = _info.grade + ":  " + _info.domain;
+            UI.Instance.ClusterText.text = _info.cluster;
+            UI.Instance.idDescriptionText.text = _info.id + ":  " + _info.standarddescription;
 
-       // Material m = _materials[i];
-
-       // _mRenderer.material = _mRenderer.materials[i];
-    }
-
-    private void OnMouseDown()
-    {
-        Debug.LogError(gameObject.name + " Clicked");
+        }
     }
 
 }
