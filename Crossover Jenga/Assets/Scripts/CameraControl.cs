@@ -7,7 +7,9 @@ public class CameraControl : MonoBehaviour
 
     [SerializeField] private Transform[] _towerPositions;
 
+    [SerializeField] private Transform _tower1AimPoint;
     [SerializeField] private Transform _tower2AimPoint;
+    [SerializeField] private Transform _tower3AimPoint;
 
     private int _currentPosition = 1;
 
@@ -15,10 +17,12 @@ public class CameraControl : MonoBehaviour
 
     private Vector3 _cameraStartRotation;
 
+    private Transform _currentAimPoint;
    
     void Start()
     {
         _cameraStartRotation = transform.rotation.eulerAngles;
+        _currentAimPoint = _tower2AimPoint;
     }
 
    
@@ -34,7 +38,24 @@ public class CameraControl : MonoBehaviour
             {
                 _moving = false;
                
+                switch(_currentPosition)
+                {
+                    case 0:
+                        _currentAimPoint = _tower1AimPoint;
+                        break;
+                    case 1:
+                        _currentAimPoint = _tower2AimPoint;
+                        break;
+                    case 2:
+                        _currentAimPoint = _tower3AimPoint;
+                        break;
+                    default:
+                        break;
+                }
+
             }
+            
+
             return;
         }
         
@@ -62,8 +83,8 @@ public class CameraControl : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             rotateAngle = Input.GetAxis("Mouse X");
-            Debug.Log("MOUSE: " + rotateAngle);
-            transform.RotateAround(_tower2AimPoint.position, Vector3.up, rotateAngle);
+            
+            transform.RotateAround(_currentAimPoint.position, Vector3.up, rotateAngle);
         }
        
     }
